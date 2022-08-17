@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:salla_app/screens/on_board_screen.dart';
+import 'package:salla_app/screens/register/register_screen.dart';
 import 'package:salla_app/shared/styles/colors.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
               .copyWith(secondary: secondColor)
       ),
-      home:  OnBoardScreen(),
+      home:  RegisterScreen(),
     );
   }
 }

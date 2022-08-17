@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:salla_app/screens/login/login_screen.dart';
+import 'package:salla_app/screens/register/register_screen.dart';
 import 'package:salla_app/shared/components/components.dart';
 import 'package:salla_app/shared/styles/colors.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               SizedBox(height: 15,),
               Text(
-                'Welcome !',
+                'Welcome back !',
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -36,74 +36,11 @@ class RegisterScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                'Create your account',
+                'Login to your account',
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[300],
                     fontFamily: GoogleFonts.alata().fontFamily),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 5,
-                              color: Colors.white,
-                              spreadRadius: .1)
-                        ],
-                      ),
-                      child: const CircleAvatar(
-                        radius: 30,
-                        backgroundColor: secondColor,
-                        child: Image(
-                          image: AssetImage(
-                            'assets/images/user.png',
-                          ),
-                          width: 25,
-                          height: 25,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: GoogleFonts.alata().fontFamily),
-                        decoration: InputDecoration(
-                          label: Text(
-                            'User name',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: GoogleFonts.alata().fontFamily),
-                          ),
-                          border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 2),
-                              gapPadding: 5),
-                          enabledBorder: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 1),
-                              gapPadding: 5),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
               ),
               const SizedBox(
                 height: 20,
@@ -215,69 +152,6 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           border: const OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 2),
-                              gapPadding: 5),
-                          enabledBorder: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 1),
-                              gapPadding: 5),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 5,
-                              color: Colors.white,
-                              spreadRadius: .1)
-                        ],
-                      ),
-                      child: const CircleAvatar(
-                        radius: 30,
-                        backgroundColor: secondColor,
-                        child: Image(
-                          image: AssetImage(
-                            'assets/images/phone.png',
-                          ),
-                          width: 25,
-                          height: 25,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        keyboardType: TextInputType.visiblePassword,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: GoogleFonts.alata().fontFamily),
-                        decoration: InputDecoration(
-                          label: Text(
-                            'Phone',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: GoogleFonts.alata().fontFamily),
-                          ),
-                          border: const OutlineInputBorder(
-                              borderRadius:
                               BorderRadius.all(Radius.circular(30.0)),
                               borderSide:
                               BorderSide(color: Colors.white, width: 2),
@@ -310,7 +184,7 @@ class RegisterScreen extends StatelessWidget {
                               side: const BorderSide(
                                   color: secondColor, width: 1)))),
                   child: Text(
-                    'Register',
+                    'Login',
                     style: TextStyle(
                         color: secondColor,
                         fontSize: 20,
@@ -324,7 +198,7 @@ class RegisterScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width * .29,
+                      width: MediaQuery.of(context).size.width * .3,
                       height: 1,
                       color: Colors.white,
                     ),
@@ -332,14 +206,14 @@ class RegisterScreen extends StatelessWidget {
                       width: 5,
                     ),
                     const Text(
-                      'Or register with',
+                      'Or login with',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * .29,
+                      width: MediaQuery.of(context).size.width * .3,
                       height: 1,
                       color: Colors.white,
                     ),
@@ -368,7 +242,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                     SizedBox(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * .1,
                     ),
                     Container(
@@ -414,16 +288,16 @@ class RegisterScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Already have an account?',style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                    fontFamily: GoogleFonts.alata().fontFamily
+                  Text('Don\'t have an account?',style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 16,
+                      fontFamily: GoogleFonts.alata().fontFamily
                   ),),
                   TextButton(
                       onPressed: (){
-                        navigateAndFinish(context, LoginScreen());
+                        navigateAndFinish(context, RegisterScreen());
                       },
-                      child: Text('Login',style: TextStyle(
+                      child: Text('Register',style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontFamily: GoogleFonts.alata().fontFamily
