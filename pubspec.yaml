@@ -32,6 +32,14 @@ dependencies:
 
   google_fonts: ^3.0.1
   smooth_page_indicator: ^1.0.0+2
+  flutter_bloc: ^8.1.1
+  bloc: ^8.1.0
+  dio: ^4.0.6
+  conditional_builder_null_safety: ^0.0.6
+  fluttertoast: ^8.0.9
+  shared_preferences: ^2.0.15
+
+
 
 
   # The following adds the Cupertino Icons font to your application.

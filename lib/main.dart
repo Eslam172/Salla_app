@@ -1,10 +1,16 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:salla_app/screens/on_board_screen.dart';
+import 'package:salla_app/screens/login/login_screen.dart';
 import 'package:salla_app/screens/register/register_screen.dart';
+import 'package:salla_app/shared/my_bloc_observer.dart';
+import 'package:salla_app/shared/network/remote.dart';
 import 'package:salla_app/shared/styles/colors.dart';
 
 void main() {
+
+  Bloc.observer = MyBlocObserver();
+  DioHelper.init();
   runApp(const MyApp());
 }
 
