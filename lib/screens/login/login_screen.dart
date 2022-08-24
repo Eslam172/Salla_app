@@ -8,6 +8,8 @@ import 'package:salla_app/screens/login/cubit/cubit.dart';
 import 'package:salla_app/screens/login/cubit/states.dart';
 import 'package:salla_app/screens/register/register_screen.dart';
 import 'package:salla_app/shared/components/components.dart';
+import 'package:salla_app/shared/components/constants.dart';
+import 'package:salla_app/shared/network/local.dart';
 import 'package:salla_app/shared/styles/colors.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -23,10 +25,14 @@ class LoginScreen extends StatelessWidget {
       create: (BuildContext context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
-          if(state is LoginSuccessState){
-            if(state.loginModel.status == true){
-              navigateTo(context, const HomeScreen());
-              Fluttertoast.showToast(
+          if (state is LoginSuccessState) {
+            if (state.loginModel.status == true) {
+              CacheHelper.saveData(
+                      key: 'token', value: state.loginModel.data!.token)
+                  .then((value) {
+                    token = state.loginModel.data!.token;
+                navigateAndFinish(context,  HomeScreen());
+                Fluttertoast.showToast(
                   msg: state.loginModel.message,
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
@@ -34,8 +40,9 @@ class LoginScreen extends StatelessWidget {
                   backgroundColor: Colors.green,
                   textColor: Colors.white,
                   fontSize: 16.0,
-              );
-            }else {
+                );
+              });
+            } else {
               Fluttertoast.showToast(
                 msg: state.loginModel.message,
                 toastLength: Toast.LENGTH_LONG,
@@ -381,8 +388,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           TextButton(
                               onPressed: () {
-                                navigateAndFinish(
-                                    context,  RegisterScreen());
+                                navigateAndFinish(context, RegisterScreen());
                               },
                               child: Text(
                                 'Register',

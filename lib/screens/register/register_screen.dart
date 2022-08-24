@@ -10,6 +10,9 @@ import 'package:salla_app/screens/register/cubit/states.dart';
 import 'package:salla_app/shared/components/components.dart';
 import 'package:salla_app/shared/styles/colors.dart';
 
+import '../../shared/components/constants.dart';
+import '../../shared/network/local.dart';
+
 class RegisterScreen extends StatelessWidget {
    RegisterScreen({Key? key}) : super(key: key);
 
@@ -27,16 +30,21 @@ class RegisterScreen extends StatelessWidget {
         listener: (context, state) {
           if(state is RegisterSuccessState){
             if(state.registerModel.status == true){
-              navigateTo(context, const HomeScreen());
-              Fluttertoast.showToast(
-                msg: state.registerModel.message,
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.green,
-                textColor: Colors.white,
-                fontSize: 16.0,
-              );
+              CacheHelper.saveData(
+                  key: 'toke', value: state.registerModel.data!.token)
+                  .then((value) {
+                token = state.registerModel.data!.token;
+                navigateAndFinish(context,  HomeScreen());
+                Fluttertoast.showToast(
+                  msg: state.registerModel.message,
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+              });
             }else {
               Fluttertoast.showToast(
                 msg: state.registerModel.message,

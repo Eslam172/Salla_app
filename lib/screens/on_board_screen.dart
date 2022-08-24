@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:salla_app/screens/login/login_screen.dart';
 import 'package:salla_app/screens/register/register_screen.dart';
+import 'package:salla_app/shared/network/local.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -45,15 +47,21 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     ),
   ];
 
+  void skipOnBoarding(){
+    CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
+      if(value == true){
+        navigateTo(context,  LoginScreen());
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
           TextButton(
-              onPressed: (){
-                navigateTo(context, const RegisterScreen());
-              },
+              onPressed: skipOnBoarding,
               child: Text('Skip',style: TextStyle(
                 fontFamily: GoogleFonts.aBeeZee().fontFamily
               ),)
@@ -81,6 +89,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               physics: const BouncingScrollPhysics(),
             ),
           ),
+
           SmoothPageIndicator(
             effect:  const ExpandingDotsEffect(
                 spacing: 5,
@@ -93,11 +102,11 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               controller: boardController,
               count: board.length,
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 10,),
           FloatingActionButton(
               onPressed: (){
                 if(isLast == true){
-                  navigateTo(context, const RegisterScreen());
+                  skipOnBoarding();
                 }else{
                   boardController.nextPage(
                       duration: const Duration(milliseconds: 750),
@@ -113,7 +122,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 30,)
+          const SizedBox(height: 20,)
         ],
       ),
     );
@@ -123,20 +132,20 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     crossAxisAlignment: CrossAxisAlignment.center,
     children:   [
       Image(image: AssetImage(model.image)),
-      const SizedBox(height: 15,),
       Text(model.title,style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontFamily: GoogleFonts.alata().fontFamily
       ),),
-      const SizedBox(height: 15,),
+      const SizedBox(height: 10,),
       Text(model.body,textAlign: TextAlign.center,style: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
           color: Colors.grey[300],
           fontFamily: GoogleFonts.alata().fontFamily
-      ),)
+      ),),
+      const SizedBox(height: 10,),
     ],
   );
 }
