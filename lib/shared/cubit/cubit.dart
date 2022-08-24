@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:salla_app/models/categories_model.dart';
 import 'package:salla_app/models/home_model.dart';
 import 'package:salla_app/screens/categories_screen.dart';
 import 'package:salla_app/screens/favorites_screen.dart';
@@ -44,6 +45,22 @@ class AppCubit extends Cubit<AppStates>{
     }).catchError((error){
       print(error.toString());
       emit(GetHomeDataErrorState());
+    });
+  }
+
+  CategoriesModel? categoriesModel;
+
+  void getCategories(){
+    emit(GetCategoriesLoadingState());
+
+    DioHelper.getData(
+        url: CATEGORIES
+    ).then((value) {
+      categoriesModel = CategoriesModel.fromJson(value.data);
+      emit(GetCategoriesSuccessState());
+    }).catchError((error){
+      print(error.toString());
+      emit(GetCategoriesErrorState());
     });
   }
 }
